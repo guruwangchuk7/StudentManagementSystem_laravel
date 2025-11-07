@@ -57,3 +57,89 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+---
+
+## Project — Student Management (Local setup & run)
+
+This repository contains a small Student Management web app built with Laravel. The instructions below are tailored for a Windows development machine using XAMPP and PowerShell (the environment used in this workspace).
+
+### Prerequisites
+
+- PHP 8.0+ (installed via XAMPP or standalone)
+- Composer
+- Node.js (16+) and npm
+- MySQL (bundled with XAMPP)
+- Git
+
+### Quick setup (Windows / XAMPP + PowerShell)
+
+1. Clone the repository (if you haven't already):
+
+```powershell
+git clone https://github.com/guruwangchuk7/StudentManagementSystem_laravel.git
+cd StudentManagementSystem_laravel
+```
+
+2. Install PHP dependencies via Composer:
+
+```powershell
+composer install
+```
+
+3. Copy the example env and generate an app key:
+
+```powershell
+copy .env.example .env
+php artisan key:generate
+```
+
+4. Configure your database (MySQL)
+
+- Open the `.env` file and set DB_DATABASE, DB_USERNAME, DB_PASSWORD to match your XAMPP MySQL credentials (default: DB_USERNAME=root and no password unless you've configured one).
+
+5. Run database migrations and seeders:
+
+```powershell
+php artisan migrate --seed
+```
+
+6. Install Node dependencies and build assets (development):
+
+```powershell
+npm install
+npm run dev
+```
+
+For a production build:
+
+```powershell
+npm run build
+```
+
+7. Serve the application (local dev server) or use XAMPP's Apache
+
+To use Laravel's built-in server (recommended for dev):
+
+```powershell
+php artisan serve
+# then open http://127.0.0.1:8000
+```
+
+Or point your Apache document root to the `public` folder when using XAMPP.
+
+### Running tests
+
+This project includes PHPUnit tests. Run them with:
+
+```powershell
+vendor\bin\phpunit
+```
+
+### Notes
+
+- If you use Git on Windows, you may see warnings about CRLF->LF normalization when committing; this is normal. Configure `core.autocrlf` as desired.
+- The `.gitignore` already excludes `vendor`, `node_modules`, and `.env`.
+- If you run into permission or environment issues, ensure PHP and Composer are available in your PATH and that MySQL is running.
+
+If you'd like, I can also add a step-by-step script or PowerShell helper to automate the setup (create database, run migrations, and start the server).
